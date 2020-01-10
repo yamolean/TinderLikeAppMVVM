@@ -67,9 +67,7 @@
 				1860FBAB23C8F0A600DCE133 /* AppDelegate.swift */,
 				1860FBAD23C8F0A600DCE133 /* SceneDelegate.swift */,
 				1860FBAF23C8F0A600DCE133 /* ViewController.swift */,
-				1860FBC323C8F62A00DCE133 /* TopNavigationStackView.swift */,
-				1860FBC123C8F53100DCE133 /* HomeBottomControlsStackView.swift */,
-				1860FBC523C8F88E00DCE133 /* CardView.swift */,
+				1860FBC723C8F9F300DCE133 /* View */,
 				1860FBBF23C8F41100DCE133 /* ExUIView.swift */,
 				1860FBB123C8F0A600DCE133 /* Main.storyboard */,
 				1860FBB423C8F0A800DCE133 /* Assets.xcassets */,
@@ -77,6 +75,16 @@
 				1860FBB923C8F0A800DCE133 /* Info.plist */,
 			);
 			path = TindxxLikeAppMVVM;
+			sourceTree = "<group>";
+		};
+		1860FBC723C8F9F300DCE133 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1860FBC323C8F62A00DCE133 /* TopNavigationStackView.swift */,
+				1860FBC123C8F53100DCE133 /* HomeBottomControlsStackView.swift */,
+				1860FBC523C8F88E00DCE133 /* CardView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
