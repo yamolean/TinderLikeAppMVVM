@@ -56,6 +56,7 @@ final class CardView: UIView {
     }
     
     private let threshold: CGFloat = 80
+    
     private func handleEnded(gesture: UIPanGestureRecognizer) {
         let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
