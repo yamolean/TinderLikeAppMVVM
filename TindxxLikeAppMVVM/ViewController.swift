@@ -10,6 +10,10 @@ import UIKit
 
 final class ViewController: UIViewController {
     
+    private let topStackView = TopNavigationStackView()
+    private let blueView = UIView()
+    private let buttonsStackView = HomeBottomControlsStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,22 +26,11 @@ final class ViewController: UIViewController {
             return v
         }
         
-        let topStackView = UIStackView(arrangedSubviews: subviews)
-        topStackView.distribution = .fillEqually
-        topStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        let overallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, buttonsStackView])
+        overallStackView.axis = .vertical
         
-        let blueView = UIView()
-        blueView.backgroundColor = .blue
-        let yellowView = UIView()
-        yellowView.backgroundColor = .yellow
-        yellowView.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        let stackView = UIStackView(arrangedSubviews: [topStackView, blueView, HomeBottomControlsStackView()])
-        stackView.axis = .vertical
-        
-        view.addSubview(stackView)
-        stackView.frame = .init(x: 0, y: 0, width: 300, height: 200)
-        stackView.fillSuperview()
+        view.addSubview(overallStackView)
+        overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
 
