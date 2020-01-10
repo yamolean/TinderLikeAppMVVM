@@ -16,6 +16,7 @@
 		1860FBC023C8F41100DCE133 /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FBBF23C8F41100DCE133 /* ExUIView.swift */; };
 		1860FBC223C8F53100DCE133 /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FBC123C8F53100DCE133 /* HomeBottomControlsStackView.swift */; };
 		1860FBC423C8F62A00DCE133 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FBC323C8F62A00DCE133 /* TopNavigationStackView.swift */; };
+		1860FBC623C8F88E00DCE133 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FBC523C8F88E00DCE133 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1860FBBF23C8F41100DCE133 /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
 		1860FBC123C8F53100DCE133 /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
 		1860FBC323C8F62A00DCE133 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
+		1860FBC523C8F88E00DCE133 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				1860FBAF23C8F0A600DCE133 /* ViewController.swift */,
 				1860FBC323C8F62A00DCE133 /* TopNavigationStackView.swift */,
 				1860FBC123C8F53100DCE133 /* HomeBottomControlsStackView.swift */,
+				1860FBC523C8F88E00DCE133 /* CardView.swift */,
 				1860FBBF23C8F41100DCE133 /* ExUIView.swift */,
 				1860FBB123C8F0A600DCE133 /* Main.storyboard */,
 				1860FBB423C8F0A800DCE133 /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1860FBC623C8F88E00DCE133 /* CardView.swift in Sources */,
 				1860FBB023C8F0A600DCE133 /* ViewController.swift in Sources */,
 				1860FBAC23C8F0A600DCE133 /* AppDelegate.swift in Sources */,
 				1860FBC223C8F53100DCE133 /* HomeBottomControlsStackView.swift in Sources */,

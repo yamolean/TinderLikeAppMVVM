@@ -11,18 +11,27 @@ import UIKit
 final class ViewController: UIViewController {
     
     private let topStackView = TopNavigationStackView()
-    private let blueView = UIView()
+    private let cardsDeckView = UIView()
     private let buttonsStackView = HomeBottomControlsStackView()
+    
+    private func initDummy() {
+        print("Setting up dummy cards")
+        let cardView = CardView(frame: .zero)
+        cardsDeckView.addSubview(cardView)
+        cardView.fillSuperview()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        blueView.backgroundColor = .blue
+        initDummy()
+        
+        cardsDeckView.backgroundColor = .blue
         initLayout()
     }
     
     private func initLayout() {
-        let overallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, buttonsStackView])
+        let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, buttonsStackView])
         overallStackView.axis = .vertical
         
         view.addSubview(overallStackView)
