@@ -32,7 +32,7 @@ final class ViewController: UIViewController {
         yellowView.backgroundColor = .yellow
         yellowView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
-        let stackView = UIStackView(arrangedSubviews: [topStackView, blueView, yellowView])
+        let stackView = UIStackView(arrangedSubviews: [topStackView, blueView, HomeBottomControlsStackView()])
         stackView.axis = .vertical
         
         view.addSubview(stackView)
