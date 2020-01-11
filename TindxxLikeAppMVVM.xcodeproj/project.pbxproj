@@ -22,6 +22,7 @@
 		1871423D23C908F700185205 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871423C23C908F700185205 /* Advertiser.swift */; };
 		1871423F23C9D8CD00185205 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871423E23C9D8CD00185205 /* RegistrationController.swift */; };
 		1871424123C9D97800185205 /* ExTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871424023C9D97800185205 /* ExTextField.swift */; };
+		1871424323C9E52100185205 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871424223C9E52100185205 /* RegistrationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		1871423C23C908F700185205 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		1871423E23C9D8CD00185205 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		1871424023C9D97800185205 /* ExTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTextField.swift; sourceTree = "<group>"; };
+		1871424223C9E52100185205 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +78,10 @@
 			children = (
 				1860FBAB23C8F0A600DCE133 /* AppDelegate.swift */,
 				1860FBAD23C8F0A600DCE133 /* SceneDelegate.swift */,
+				1871424423C9E88300185205 /* Ex */,
 				1871423923C906AC00185205 /* ViewModel */,
 				1871423823C9047200185205 /* Model */,
 				1860FBC723C8F9F300DCE133 /* View */,
-				1860FBBF23C8F41100DCE133 /* ExUIView.swift */,
-				1871424023C9D97800185205 /* ExTextField.swift */,
 				1860FBB123C8F0A600DCE133 /* Main.storyboard */,
 				1860FBB423C8F0A800DCE133 /* Assets.xcassets */,
 				1860FBB623C8F0A800DCE133 /* LaunchScreen.storyboard */,
@@ -114,8 +115,18 @@
 			isa = PBXGroup;
 			children = (
 				1871423A23C906C000185205 /* CardViewModel.swift */,
+				1871424223C9E52100185205 /* RegistrationViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1871424423C9E88300185205 /* Ex */ = {
+			isa = PBXGroup;
+			children = (
+				1860FBBF23C8F41100DCE133 /* ExUIView.swift */,
+				1871424023C9D97800185205 /* ExTextField.swift */,
+			);
+			path = Ex;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 				1871424123C9D97800185205 /* ExTextField.swift in Sources */,
 				1871423F23C9D8CD00185205 /* RegistrationController.swift in Sources */,
 				1860FBC423C8F62A00DCE133 /* TopNavigationStackView.swift in Sources */,
+				1871424323C9E52100185205 /* RegistrationViewModel.swift in Sources */,
 				1860FBAE23C8F0A600DCE133 /* SceneDelegate.swift in Sources */,
 				1860FBC023C8F41100DCE133 /* ExUIView.swift in Sources */,
 				1871423B23C906C000185205 /* CardViewModel.swift in Sources */,
