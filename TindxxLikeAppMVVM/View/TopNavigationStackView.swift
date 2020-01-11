@@ -10,16 +10,16 @@ import UIKit
 
 final class TopNavigationStackView: UIStackView {
     
-    private let settingsButton = UIButton(type: .system)
+    let settingsButton = UIButton(type: .system)
     private let messageButton = UIButton(type: .system)
     private let fireImageView = UIImageView(image: #imageLiteral(resourceName: "yamolean"))
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         fireImageView.contentMode = .scaleAspectFit
         
-        settingsButton.setImage(#imageLiteral(resourceName: "yamolean").withRenderingMode(.alwaysOriginal), for: .normal)
+        settingsButton.setImage(#imageLiteral(resourceName: "yamada").withRenderingMode(.alwaysOriginal), for: .normal)
         messageButton.setImage(#imageLiteral(resourceName: "yamolean").withRenderingMode(.alwaysOriginal), for: .normal)
         
         [settingsButton, UIView(), fireImageView, UIView(), messageButton].forEach { (v) in
@@ -35,5 +35,5 @@ final class TopNavigationStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError()
     }
-
+    
 }

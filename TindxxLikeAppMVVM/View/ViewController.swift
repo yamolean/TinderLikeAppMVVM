@@ -27,6 +27,9 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
+        
         initLayout()
         initDummy()
     }
@@ -38,6 +41,11 @@ final class ViewController: UIViewController {
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
+    }
+    
+    @objc private func handleSettings() {
+        let registrationController = RegistrationController()
+        present(registrationController, animated: true)
     }
     
     private func initLayout() {
