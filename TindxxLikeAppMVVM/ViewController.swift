@@ -16,10 +16,9 @@ final class ViewController: UIViewController {
     
     let cardViewModels: [CardViewModel] = {
         let producers = [
-            User(name: "yamolean", age: 23, profession: "Hos", imageName: "yamada"),
-            User(name: "yamolean", age: 18, profession: "HosHos", imageName: "yamada"),
+            User(name: "yamolean", age: 23, profession: "Hos", imageNames: ["yamada","yamada","yamolean","yamolean"]),
             Advertiser(title: "Slide Out Menu", brandName: "njndjajndjn", posterPhotoName: "slide_out_menu_poster"),
-            User(name: "yamolean", age: 18, profession: "HosHosHos", imageName: "yamada")
+            User(name: "yamolean", age: 18, profession: "HosHosHos", imageNames: ["yamolean","yamada","yamolean","yamolean"])
         ] as [ProducesCardViewModel]
         
         let viewModels = producers.map({return $0.toCardViewModel()})
@@ -28,9 +27,8 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initDummy()
-        cardsDeckView.backgroundColor = .blue
         initLayout()
+        initDummy()
     }
     
     private func initDummy() {

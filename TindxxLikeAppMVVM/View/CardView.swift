@@ -12,9 +12,30 @@ final class CardView: UIView {
     
     var cardViewModel: CardViewModel! {
         didSet {
-            imageView.image = UIImage(named: cardViewModel.imageName)
+            let imageName = cardViewModel.imageNames.first ?? ""
+            imageView.image = UIImage(named: imageName)
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
+            
+            (0..<cardViewModel.imageNames.count).forEach { (_) in
+                let barView = UIView()
+                barView.backgroundColor = barDeselectedColor
+                barsStackView.addArrangedSubview(barView)
+            }
+            barsStackView.arrangedSubviews.first?.backgroundColor = .white
+            initImageIndexObserver()
+        }
+    }
+    
+    private func initImageIndexObserver() {
+        cardViewModel.imageIndexObserver = { [weak self] (idx, image) in
+            print("Changing photo from view model")
+            self?.imageView.image = image
+            
+            self?.barsStackView.arrangedSubviews.forEach({ (v) in
+                v.backgroundColor = self?.barDeselectedColor
+            })
+            self?.barsStackView.arrangedSubviews[idx].backgroundColor = .white
         }
     }
     
@@ -22,12 +43,28 @@ final class CardView: UIView {
     private let informationLabel = UILabel()
     private let gradientLayer = CAGradientLayer()
     
+    private var imageIndex = 0
+    private let barDeselectedColor = UIColor(white: 0, alpha: 0.1)
+    private let barsStackView = UIStackView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initLayout()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    }
+    
+    @objc private func handleTap(gesture: UITapGestureRecognizer) {
+        print("Handling tap and cycling photos")
+        let tapLocation = gesture.location(in: nil)
+        let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
+        if shouldAdvanceNextPhoto {
+            cardViewModel.advanceToNextPhoto()
+        } else {
+            cardViewModel.goToPreviousPhoto()
+        }
     }
     
     private func initLayout() {
@@ -38,6 +75,8 @@ final class CardView: UIView {
         addSubview(imageView)
         imageView.fillSuperview()
         
+        setupBarsStackView()
+        
         setupGradientLayer()
         
         addSubview(informationLabel)
@@ -45,9 +84,13 @@ final class CardView: UIView {
         
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        addGestureRecognizer(panGesture)
+    }
+    
+    private func setupBarsStackView() {
+        addSubview(barsStackView)
+        barsStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
+        barsStackView.spacing = 4
+        barsStackView.distribution = .fillEqually
     }
     
     private func setupGradientLayer() {
