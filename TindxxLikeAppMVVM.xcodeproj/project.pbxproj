@@ -19,6 +19,7 @@
 		1860FBC623C8F88E00DCE133 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FBC523C8F88E00DCE133 /* CardView.swift */; };
 		1871423723C9023C00185205 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871423623C9023C00185205 /* User.swift */; };
 		1871423B23C906C000185205 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871423A23C906C000185205 /* CardViewModel.swift */; };
+		1871423D23C908F700185205 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871423C23C908F700185205 /* Advertiser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1860FBC523C8F88E00DCE133 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		1871423623C9023C00185205 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1871423A23C906C000185205 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		1871423C23C908F700185205 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				1871423623C9023C00185205 /* User.swift */,
+				1871423C23C908F700185205 /* Advertiser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1871423D23C908F700185205 /* Advertiser.swift in Sources */,
 				1860FBC623C8F88E00DCE133 /* CardView.swift in Sources */,
 				1860FBB023C8F0A600DCE133 /* ViewController.swift in Sources */,
 				1860FBAC23C8F0A600DCE133 /* AppDelegate.swift in Sources */,

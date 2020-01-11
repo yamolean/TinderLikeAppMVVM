@@ -14,16 +14,21 @@ final class ViewController: UIViewController {
     private let cardsDeckView = UIView()
     private let buttonsStackView = HomeBottomControlsStackView()
     
-    let cardViewModels = [
-        User(name: "yamolean", age: 23, profession: "hos", imageName: "yamolean").toCardViewModel(),
-        User(name: "yamolean1", age: 18, profession: "hoshos", imageName: "yamolean").toCardViewModel()
-    ]
+    let cardViewModels: [CardViewModel] = {
+        let producers = [
+            User(name: "yamolean", age: 23, profession: "Hos", imageName: "yamada"),
+            User(name: "yamolean", age: 18, profession: "HosHos", imageName: "yamada"),
+            Advertiser(title: "Slide Out Menu", brandName: "njndjajndjn", posterPhotoName: "slide_out_menu_poster"),
+            User(name: "yamolean", age: 18, profession: "HosHosHos", imageName: "yamada")
+        ] as [ProducesCardViewModel]
+        
+        let viewModels = producers.map({return $0.toCardViewModel()})
+        return viewModels
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initDummy()
-        
         cardsDeckView.backgroundColor = .blue
         initLayout()
     }
@@ -31,9 +36,7 @@ final class ViewController: UIViewController {
     private func initDummy() {
         cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
-            cardView.imageView.image = UIImage(named: cardVM.imageName)
-            cardView.informationLabel.attributedText = cardVM.attributedString
-            cardView.informationLabel.textAlignment = cardVM.textAlignment
+            cardView.cardViewModel = cardVM
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
