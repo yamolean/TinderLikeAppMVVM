@@ -73,6 +73,7 @@ final class RegistrationController: UIViewController {
     }()
     
     private let registrationViewModel = RegistrationViewModel()
+    private let registeringHUD = JGProgressHUD(style: .dark)
     
     private func setupRegistrationViewModelObserver() {
         registrationViewModel.bindableIsFormValid.bind { [unowned self] (isFormValid) in
@@ -82,6 +83,14 @@ final class RegistrationController: UIViewController {
             self.registerButton.setTitleColor(isFormValid ? .white : .gray, for: .normal)
         }
         registrationViewModel.bindableImage.bind { [unowned self] (img) in self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        registrationViewModel.bindableIsRegistering.bind { [unowned self] (isRegistering) in
+            if isRegistering == true {
+                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.show(in: self.view)
+            } else {
+                self.registeringHUD.dismiss()
+            }
         }
     }
     

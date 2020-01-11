@@ -10,7 +10,9 @@ import UIKit
 
 final class RegistrationViewModel {
     
+    var bindableIsRegistering = Bindable<Bool>()
     var bindableImage = Bindable<UIImage>()
+    var bindableIsFormValid = Bindable<Bool>()
     
     var fullName: String? {
         didSet {
@@ -25,6 +27,5 @@ final class RegistrationViewModel {
         let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false
          bindableIsFormValid.value = isFormValid
     }
-    var bindableIsFormValid = Bindable<Bool>()
     
 }
