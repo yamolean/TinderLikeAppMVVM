@@ -77,8 +77,9 @@ final class ViewController: UIViewController {
     }
     
     @objc private func handleSettings() {
-        let registrationController = RegistrationController()
-        present(registrationController, animated: true)
+        let settingsController = SettingsController()
+        let navController = UINavigationController(rootViewController: settingsController)
+        present(navController, animated: true)
     }
     
     private func initLayout() {
