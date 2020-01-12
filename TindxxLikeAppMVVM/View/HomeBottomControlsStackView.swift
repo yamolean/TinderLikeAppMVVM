@@ -9,21 +9,28 @@
 import UIKit
 
 final class HomeBottomControlsStackView: UIStackView {
+    
+    static func createButton(image: UIImage) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        return button
+    }
+    
+    let refreshButton = createButton(image: #imageLiteral(resourceName: "yamolean"))
+    let dislikeButton = createButton(image: #imageLiteral(resourceName: "yamolean"))
+    let superLikeButton = createButton(image: #imageLiteral(resourceName: "yamolean"))
+    let likeButton = createButton(image: #imageLiteral(resourceName: "yamolean"))
+    let specialButton = createButton(image: #imageLiteral(resourceName: "yamolean"))
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         distribution = .fillEqually
         heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        let subviews = [#imageLiteral(resourceName: "yamolean"), #imageLiteral(resourceName: "yamolean"), #imageLiteral(resourceName: "yamolean"), #imageLiteral(resourceName: "yamolean"), #imageLiteral(resourceName: "yamolean")].map { (img) -> UIView in
-            let button = UIButton(type: .system)
-            button.setImage(img.withRenderingMode(.alwaysOriginal), for: .normal)
-            return button
-        }
-        
-        subviews.forEach { (v) in
-            addArrangedSubview(v)
-        }
+       [refreshButton, dislikeButton, superLikeButton, likeButton, specialButton].forEach { (button) in
+           self.addArrangedSubview(button)
+       }
     }
     
     required init(coder: NSCoder) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class CardView: UIView {
     
@@ -28,9 +29,11 @@ final class CardView: UIView {
     }
     
     private func initImageIndexObserver() {
-        cardViewModel.imageIndexObserver = { [weak self] (idx, image) in
-            print("Changing photo from view model")
-            self?.imageView.image = image
+        cardViewModel.imageIndexObserver = { [weak self] (idx, imageUrl) in
+            
+            if let url = URL(string: imageUrl ?? "") {
+                self?.imageView.sd_setImage(with: url)
+            }
             
             self?.barsStackView.arrangedSubviews.forEach({ (v) in
                 v.backgroundColor = self?.barDeselectedColor

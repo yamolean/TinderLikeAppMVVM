@@ -170,7 +170,6 @@ final class RegistrationController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self) // you'll have a retain cycle
     }
     
     @objc private func handleKeyboardHide() {
@@ -230,15 +229,14 @@ final class RegistrationController: UIViewController {
         overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
-    private let gradientLayer = CAGradientLayer()
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         gradientLayer.frame = view.bounds
     }
     
+    private let gradientLayer = CAGradientLayer()
+    
     private func initGradientLayer() {
-        let gradientLayer = CAGradientLayer()
         let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
         let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
