@@ -11,7 +11,33 @@ import Firebase
 import JGProgressHUD
 
 
-final class ViewController: UIViewController {
+final class ViewController: UIViewController, SettingsControllerDelegate, LoginControllerDelegate {
+    
+    func didSaveSettings() {
+        fetchCurrentUser()
+    }
+    
+    func didFinishLoggingIn() {
+        fetchCurrentUser()
+    }
+    
+    private let hud = JGProgressHUD(style: .dark)
+    private var user: User?
+    
+    private func fetchCurrentUser() {
+        hud.textLabel.text = "Loading"
+        hud.show(in: view)
+        cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
+        Firestore.firestore().fetchCurrentUser { (user, err) in
+            if let err = err {
+                print("Failed to fetch user:", err)
+                self.hud.dismiss()
+                return
+            }
+            self.user = user
+            self.fetchUsersFromFirestore()
+        }
+    }
     
     private let topStackView = TopNavigationStackView()
     private let cardsDeckView = UIView()
@@ -21,15 +47,26 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         
         initLayout()
-        initFirestoreUserCards()
-        fetchUsersFromFirestore()
+        fetchCurrentUser()
+//        initFirestoreUserCards()
+//        fetchUsersFromFirestore()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("HomeController did appear")
+        if Auth.auth().currentUser == nil {
+            let registrationController = RegistrationController()
+            registrationController.delegate = self
+            let navController = UINavigationController(rootViewController: registrationController)
+            present(navController, animated: true)
+        }
+    }
+
     @objc private func handleRefresh() {
            fetchUsersFromFirestore()
        }
@@ -40,7 +77,6 @@ final class ViewController: UIViewController {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Fetching Users"
         hud.show(in: view)
-        // i will introduce pagination here to page through 2 users at a time
         let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
         query.getDocuments { (snapshot, err) in
             hud.dismiss()
@@ -67,14 +103,14 @@ final class ViewController: UIViewController {
         cardView.fillSuperview()
     }
     
-    private func initFirestoreUserCards() {
-        cardViewModels.forEach { (cardVM) in
-            let cardView = CardView(frame: .zero)
-            cardView.cardViewModel = cardVM
-            cardsDeckView.addSubview(cardView)
-            cardView.fillSuperview()
-        }
-    }
+//    private func initFirestoreUserCards() {
+//        cardViewModels.forEach { (cardVM) in
+//            let cardView = CardView(frame: .zero)
+//            cardView.cardViewModel = cardVM
+//            cardsDeckView.addSubview(cardView)
+//            cardView.fillSuperview()
+//        }
+//    }
     
     @objc private func handleSettings() {
         let settingsController = SettingsController()

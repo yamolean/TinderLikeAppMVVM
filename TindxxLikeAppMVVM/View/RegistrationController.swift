@@ -26,6 +26,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
 
 final class RegistrationController: UIViewController {
     
+    var delegate: LoginControllerDelegate?
+    
     private let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
