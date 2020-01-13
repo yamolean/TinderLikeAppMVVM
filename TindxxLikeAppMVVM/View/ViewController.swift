@@ -103,6 +103,12 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
         cardView.fillSuperview()
     }
     
+    private func didTapMoreInfo() {
+        print("Home controller going to show user details now")
+        let userDetailsController = UserDetailsController()
+        present(userDetailsController, animated: true)
+    }
+    
 //    private func initFirestoreUserCards() {
 //        cardViewModels.forEach { (cardVM) in
 //            let cardView = CardView(frame: .zero)

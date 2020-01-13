@@ -31,6 +31,7 @@
 		1871425023CBABBD00185205 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871424F23CBABBD00185205 /* LoginController.swift */; };
 		1871425223CBAC1F00185205 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871425123CBAC1F00185205 /* LoginViewModel.swift */; };
 		1871425423CBAEBD00185205 /* ExFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871425323CBAEBD00185205 /* ExFirestore.swift */; };
+		1871425623CC6FFA00185205 /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1871425523CC6FFA00185205 /* UserDetailsController.swift */; };
 		1FF7BD03BBB268A7FC9B670E /* Pods_TindxxLikeAppMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6751B058EDFC935CBCCBBFA1 /* Pods_TindxxLikeAppMVVM.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		1871424F23CBABBD00185205 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		1871425123CBAC1F00185205 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1871425323CBAEBD00185205 /* ExFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFirestore.swift; sourceTree = "<group>"; };
+		1871425523CC6FFA00185205 /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
 		47AFC2F3BE3C6847735630BB /* Pods-TindxxLikeAppMVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindxxLikeAppMVVM.debug.xcconfig"; path = "Target Support Files/Pods-TindxxLikeAppMVVM/Pods-TindxxLikeAppMVVM.debug.xcconfig"; sourceTree = "<group>"; };
 		6751B058EDFC935CBCCBBFA1 /* Pods_TindxxLikeAppMVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TindxxLikeAppMVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4913904C8D4C31538351A45 /* Pods-TindxxLikeAppMVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TindxxLikeAppMVVM.release.xcconfig"; path = "Target Support Files/Pods-TindxxLikeAppMVVM/Pods-TindxxLikeAppMVVM.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				1860FBAF23C8F0A600DCE133 /* ViewController.swift */,
+				1871425523CC6FFA00185205 /* UserDetailsController.swift */,
 				1871424923CB999200185205 /* SettingsController.swift */,
 				1871424B23CB9A0700185205 /* SettingsCell.swift */,
 				1871423E23C9D8CD00185205 /* RegistrationController.swift */,
@@ -300,6 +303,7 @@
 				1871425423CBAEBD00185205 /* ExFirestore.swift in Sources */,
 				1860FBC223C8F53100DCE133 /* HomeBottomControlsStackView.swift in Sources */,
 				1871424E23CBAB5800185205 /* AgeRangeCell.swift in Sources */,
+				1871425623CC6FFA00185205 /* UserDetailsController.swift in Sources */,
 				1871423723C9023C00185205 /* User.swift in Sources */,
 				1871424A23CB999200185205 /* SettingsController.swift in Sources */,
 				1871424123C9D97800185205 /* ExTextField.swift in Sources */,

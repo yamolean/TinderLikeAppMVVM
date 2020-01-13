@@ -113,6 +113,7 @@ final class LoginController: UIViewController {
             self.loginButton.backgroundColor = isFormValid ? #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1) : .lightGray
             self.loginButton.setTitleColor(isFormValid ? .white : .gray, for: .normal)
         }
+        
         loginViewModel.isLoggingIn.bind { [unowned self] (isRegistering) in
             if isRegistering == true {
                 self.loginHUD.textLabel.text = "Register"

@@ -9,7 +9,13 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate {
+    func didTapMoreInfo()
+}
+
 final class CardView: UIView {
+    
+    var delegate: CardViewDelegate?
     
     var cardViewModel: CardViewModel! {
         didSet {
@@ -70,6 +76,21 @@ final class CardView: UIView {
         }
     }
     
+    private let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "yamada").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func handleMoreInfo() {
+            delegate?.didTapMoreInfo()
+    //        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+    //        let userDetailsController = UIViewController()
+    //        userDetailsController.view.backgroundColor = .yellow
+    //        rootViewController?.present(userDetailsController, animated: true)
+        }
+    
     private func initLayout() {
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -87,6 +108,9 @@ final class CardView: UIView {
         
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+        
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 44, height: 44))
     }
     
     private func setupBarsStackView() {
