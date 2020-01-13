@@ -85,10 +85,10 @@ final class CardView: UIView {
     
     @objc private func handleMoreInfo() {
             delegate?.didTapMoreInfo()
-    //        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-    //        let userDetailsController = UIViewController()
-    //        userDetailsController.view.backgroundColor = .yellow
-    //        rootViewController?.present(userDetailsController, animated: true)
+//            let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+//            let userDetailsController = UIViewController()
+//            userDetailsController.view.backgroundColor = .yellow
+//            rootViewController?.present(userDetailsController, animated: true)
         }
     
     private func initLayout() {

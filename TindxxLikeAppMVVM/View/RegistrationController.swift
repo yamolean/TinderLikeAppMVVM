@@ -25,9 +25,9 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 final class RegistrationController: UIViewController {
-    
+
     var delegate: LoginControllerDelegate?
-    
+
     private let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
@@ -41,23 +41,23 @@ final class RegistrationController: UIViewController {
         button.clipsToBounds = true
         return button
     }()
-    
+
     @objc private func handleSelectPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         present(imagePickerController, animated: true)
     }
-    
+
     lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
     lazy var selectPhotoButtonHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
-    
+
     private let fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter full name"
         tf.backgroundColor = .white
         return tf
     }()
-    
+
     private let emailTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter email"
@@ -65,7 +65,7 @@ final class RegistrationController: UIViewController {
         tf.backgroundColor = .white
         return tf
     }()
-    
+
     private let passwordTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 44)
         tf.placeholder = "Enter password"
@@ -73,10 +73,10 @@ final class RegistrationController: UIViewController {
         tf.backgroundColor = .white
         return tf
     }()
-    
+
     private let registrationViewModel = RegistrationViewModel()
     private let registeringHUD = JGProgressHUD(style: .dark)
-    
+
     private func setupRegistrationViewModelObserver() {
         registrationViewModel.bindableIsFormValid.bind { [unowned self] (isFormValid) in
             guard let isFormValid = isFormValid else { return }
@@ -95,7 +95,7 @@ final class RegistrationController: UIViewController {
             }
         }
     }
-    
+
     @objc private func handleTextChange(textField: UITextField) {
         if textField == fullNameTextField {
             registrationViewModel.fullName = textField.text
@@ -105,7 +105,7 @@ final class RegistrationController: UIViewController {
             registrationViewModel.password = textField.text
         }
     }
-    
+
     private let registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
@@ -119,26 +119,26 @@ final class RegistrationController: UIViewController {
         button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
-    
+
     @objc private func handleRegister() {
         self.handleTapDismiss()
         print("Register our User in Firebase Auth")
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        
+
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
-            
+
             if let err = err {
                 print(err)
                 self.showHUDWithError(error: err)
                 return
             }
-            
+
             print("Successfully registered user:", res?.user.uid ?? "")
         }
-        
+
     }
-    
+
     private func showHUDWithError(error: Error) {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed registration"
@@ -156,42 +156,42 @@ final class RegistrationController: UIViewController {
         setupTapGesture()
         setupRegistrationViewModelObserver()
     }
-    
+
     private func setupTapGesture() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
     }
-    
+
     @objc private func handleTapDismiss() {
         self.view.endEditing(true)
     }
-    
+
     private func setupNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
+
     @objc private func handleKeyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.transform = .identity
         })
     }
-    
+
     @objc private func handleKeyboardShow(notification: Notification) {
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
         print(keyboardFrame)
-        
+
         let bottomSpace = view.frame.height - overallStackView.frame.origin.y - overallStackView.frame.height
         print(bottomSpace)
-        
+
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
     }
-    
+
     lazy var verticalStackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [
             fullNameTextField,
@@ -203,12 +203,12 @@ final class RegistrationController: UIViewController {
         sv.spacing = 8
         return sv
     }()
-    
+
     lazy var overallStackView = UIStackView(arrangedSubviews: [
         selectPhotoButton,
         verticalStackView
     ])
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if self.traitCollection.verticalSizeClass == .compact {
             overallStackView.axis = .horizontal
@@ -222,7 +222,7 @@ final class RegistrationController: UIViewController {
             selectPhotoButtonHeightAnchor.isActive = true
         }
     }
-    
+
     private func initLayout() {
         view.addSubview(overallStackView)
         overallStackView.axis = .vertical
@@ -230,14 +230,14 @@ final class RegistrationController: UIViewController {
         overallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         gradientLayer.frame = view.bounds
     }
-    
+
     private let gradientLayer = CAGradientLayer()
-    
+
     private func initGradientLayer() {
         let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
         let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)

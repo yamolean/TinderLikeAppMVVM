@@ -12,18 +12,18 @@ import JGProgressHUD
 
 
 final class ViewController: UIViewController, SettingsControllerDelegate, LoginControllerDelegate {
-    
+
     func didSaveSettings() {
         fetchCurrentUser()
     }
-    
+
     func didFinishLoggingIn() {
         fetchCurrentUser()
     }
-    
+
     private let hud = JGProgressHUD(style: .dark)
     private var user: User?
-    
+
     private func fetchCurrentUser() {
         hud.textLabel.text = "Loading"
         hud.show(in: view)
@@ -38,24 +38,24 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
             self.fetchUsersFromFirestore()
         }
     }
-    
+
     private let topStackView = TopNavigationStackView()
     private let cardsDeckView = UIView()
     private let bottomControls = HomeBottomControlsStackView()
-    
+
     private var cardViewModels = [CardViewModel]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
-        
+
         initLayout()
         fetchCurrentUser()
 //        initFirestoreUserCards()
 //        fetchUsersFromFirestore()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("HomeController did appear")
@@ -70,9 +70,9 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
     @objc private func handleRefresh() {
            fetchUsersFromFirestore()
        }
-    
+
     private var lastFetchedUser: User?
-    
+
     private func fetchUsersFromFirestore() {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Fetching Users"
@@ -84,7 +84,7 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
                 print("Failed to fetch users:", err)
                 return
             }
-            
+
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
@@ -94,7 +94,7 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
             })
         }
     }
-    
+
     private func setupCardFromUser(user: User) {
         let cardView = CardView(frame: .zero)
         cardView.cardViewModel = user.toCardViewModel()
@@ -102,13 +102,13 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
         cardsDeckView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
     }
-    
+
     private func didTapMoreInfo() {
         print("Home controller going to show user details now")
         let userDetailsController = UserDetailsController()
         present(userDetailsController, animated: true)
     }
-    
+
 //    private func initFirestoreUserCards() {
 //        cardViewModels.forEach { (cardVM) in
 //            let cardView = CardView(frame: .zero)
@@ -117,13 +117,13 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
 //            cardView.fillSuperview()
 //        }
 //    }
-    
+
     @objc private func handleSettings() {
         let settingsController = SettingsController()
         let navController = UINavigationController(rootViewController: settingsController)
         present(navController, animated: true)
     }
-    
+
     private func initLayout() {
         let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, bottomControls])
         overallStackView.axis = .vertical
@@ -131,7 +131,7 @@ final class ViewController: UIViewController, SettingsControllerDelegate, LoginC
         overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         overallStackView.isLayoutMarginsRelativeArrangement = true
         overallStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
-        
+
         overallStackView.bringSubviewToFront(cardsDeckView)
     }
 }
